@@ -1,6 +1,6 @@
 import requests
 
-fname = "mrmaelish.txt"
+fname = "imported_accounts.txt"
 available = "available_accounts.txt"
 
 def file_len(fname):
@@ -11,13 +11,6 @@ def file_len(fname):
 	return i + 1
 
 lines = file_len(fname)
-
-def line_by_line(fname):
-	f = open(fname)
-	lines = f.readlines()
-	for line in lines:
-		print(line)
-	return lines
 
 def name_check():
 	f = open(fname)
