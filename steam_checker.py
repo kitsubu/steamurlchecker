@@ -14,19 +14,20 @@ lines = file_len(fname)
 
 def name_check():
 	f = open(fname)
-	lines = f.readlines()
+	lines = (line.rstrip('\n') for line in open(fname))
 	
 	with open(fname, "r") as f:
 		lines = f.readlines()
 		for line in lines:
 			page = requests.get("http://steamcommunity.com/id/{}".format(line)).text
 			if "The specified profile could not be found." in page:
-				print("{} is available.\nexported to text file: {}".format(line.strip(), available))
+				print("{} is available! Exported to text file: {}".format(line.strip(), available))
 				
 				with open(available, "a") as f:
 					f.write(line)
+					f.write('\n')
 				
 			else:
-				print("{} is unavailable".format(line.strip()))
+				print("{} is unavailable.".format(line.strip()))
 
 name_check()
